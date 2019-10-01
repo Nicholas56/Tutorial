@@ -13,6 +13,7 @@ public class menuScript : MonoBehaviour
 
     public void loadMain()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 

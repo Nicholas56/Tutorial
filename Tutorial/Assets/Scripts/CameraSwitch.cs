@@ -19,7 +19,7 @@ public class CameraSwitch : MonoBehaviour
         if (camera2 != null && camera1 != null)
         {
             Debug.DrawRay(transform.position, (transform.position + (new Vector3(10, 0, 0))), Color.red);
-            if (Physics.Raycast(transform.position, transform.right, 10))
+            if (Physics.Raycast(transform.position, transform.right, 2))
             {
                 camera1.SetActive(false);
                 camera2.SetActive(true);

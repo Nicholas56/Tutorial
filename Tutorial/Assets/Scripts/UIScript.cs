@@ -14,6 +14,8 @@ public class UIScript : MonoBehaviour
     public TMP_Text timeNum;
     static int score;
 
+    public GameObject losePanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,23 +30,27 @@ public class UIScript : MonoBehaviour
         healthBar.value = healthScript.getHealth();
         healthTxt.text = "Health:" + healthScript.getHealth();
 
+        losePanel.SetActive(false);
+
         StartCoroutine("updateUI");
     }
 
     IEnumerator updateUI()
     {
+        yield return new WaitForSeconds(0.5f);
         healthBar.value = healthScript.getHealth();
         healthTxt.text = "Health:" + healthScript.getHealth();
 
         timeNum.text = "" + (int)Time.time;
         scoreNum.text = score + "";
 
-        if (healthScript.IsDead)
+        if (healthScript.IsDead&&(int)Time.time>1)
         {
-            //losePanel.SetActive(true);
+            losePanel.SetActive(true);
             Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
-        yield return new WaitForSeconds(0.5f);
         StartCoroutine("updateUI");
     }
 

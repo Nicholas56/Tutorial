@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] int maximumHealth = 100;
+    [SerializeField] int scoreValue = 50;
     int currentHealth = 0;
 
     // Start is called before the first frame update
@@ -33,9 +34,9 @@ public class Health : MonoBehaviour
         {
             if (gameObject.tag != "Player")
             {
-                UIScript.updateScore(50);
+                UIScript.updateScore(scoreValue);
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
     }
 
