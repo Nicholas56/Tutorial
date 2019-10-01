@@ -16,16 +16,19 @@ public class CameraSwitch : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, (transform.position + (new Vector3(10, 0, 0))), Color.red);
-        if (Physics.Raycast(transform.position, transform.right, 10)&&camera1!=null)
+        if (camera2 != null && camera1 != null)
         {
-            camera1.SetActive(false);
-            camera2.SetActive(true);
-        }
-        else
-        {
-            camera2.SetActive(false);
-            camera1.SetActive(true);
+            Debug.DrawRay(transform.position, (transform.position + (new Vector3(10, 0, 0))), Color.red);
+            if (Physics.Raycast(transform.position, transform.right, 10))
+            {
+                camera1.SetActive(false);
+                camera2.SetActive(true);
+            }
+            else
+            {
+                camera2.SetActive(false);
+                camera1.SetActive(true);
+            }
         }
     }
 

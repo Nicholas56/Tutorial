@@ -31,6 +31,10 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            if (gameObject.tag != "Player")
+            {
+                UIScript.updateScore(50);
+            }
             Destroy(gameObject);
         }
     }
