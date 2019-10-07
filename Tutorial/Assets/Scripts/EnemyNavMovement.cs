@@ -6,6 +6,7 @@ public class EnemyNavMovement : MonoBehaviour
 {
     UnityEngine.AI.NavMeshAgent agent;
     public Transform target;
+    public bool isActivated;
 
     // Start is called before the first frame update
     void Start()
@@ -17,10 +18,13 @@ public class EnemyNavMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(target.position);
-        if (agent.remainingDistance < (agent.stoppingDistance + 0.5f))
+        if (isActivated)
         {
-            transform.LookAt(target.transform);
+            agent.SetDestination(target.position);
+            if (agent.remainingDistance < (agent.stoppingDistance + 0.5f))
+            {
+                transform.LookAt(target.transform);
+            }
         }
     }
 }

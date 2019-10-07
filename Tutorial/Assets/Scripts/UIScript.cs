@@ -15,6 +15,7 @@ public class UIScript : MonoBehaviour
     static int score;
 
     public GameObject losePanel;
+    public ControlScript control;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class UIScript : MonoBehaviour
         healthBar.maxValue = healthScript.getMaxHealth();
         healthBar.value = healthScript.getHealth();
         healthTxt.text = "Health:" + healthScript.getHealth();
-
+        
         losePanel.SetActive(false);
 
         StartCoroutine("updateUI");
@@ -48,8 +49,12 @@ public class UIScript : MonoBehaviour
         {
             losePanel.SetActive(true);
             Time.timeScale = 0;
+            
+            
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
+            control.UnFreeze(false);
         }
         StartCoroutine("updateUI");
     }
