@@ -6,6 +6,7 @@ public class shootingScript : MonoBehaviour
 {
     [SerializeField] int damageDealt = 20;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] GameObject bloodHit;
     Animator anim;
 
     // Start is called before the first frame update
@@ -36,6 +37,9 @@ public class shootingScript : MonoBehaviour
                 if(enemyHealth != null)
                 {
                     enemyHealth.Damage(damageDealt);
+                    Vector3 bloodHitPos = hitInfo.point;
+                    Quaternion bloodHitRot = Quaternion.FromToRotation(Vector3.forward, hitInfo.normal);
+                    Instantiate(bloodHit, bloodHitPos, bloodHitRot);
                 }
             }
         }

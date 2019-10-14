@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (charController.isGrounded)
         {
+            anim.SetBool("Grounded", true);
             if (Input.GetButtonDown("Jump"))
             {
                 anim.SetTrigger("Jump");
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            anim.SetBool("Grounded", false);
             yVelocity -= gravity;
         }
         velocity.y = yVelocity;

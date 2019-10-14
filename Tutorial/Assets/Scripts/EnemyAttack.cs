@@ -16,6 +16,7 @@ public class EnemyAttack : MonoBehaviour
 
     Transform playerModel;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] GameObject bloodHit;
     Animator anim;
 
     // Start is called before the first frame update
@@ -37,6 +38,12 @@ public class EnemyAttack : MonoBehaviour
             Health playerHealth = other.GetComponent<Health>();
             anim.SetTrigger("Attack");
             playerHealth.Damage(damageDealt);
+
+            Vector3 hitDirection = (transform.root.position - other.transform.position).normalized;
+            Vector3 hitEffectPos = other.transform.position + (hitDirection * 0.01f) + (Vector3.up*1.5f);
+            Quaternion hitEffectRotation = Quaternion.FromToRotation(Vector3.forward, hitDirection);
+            Instantiate(bloodHit, hitEffectPos, hitEffectRotation);
+
             nextTimeAttackIsAllowed = Time.time + attackDelay;
 
         }

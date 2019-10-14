@@ -2018,6 +2018,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
+  bloodHit: {fileID: 6676973013373252893, guid: e76db2297ed3e2d48bdc46e2a02078c5,
+    type: 3}
 --- !u!1 &7889238582782091888
 GameObject:
   m_ObjectHideFlags: 0
