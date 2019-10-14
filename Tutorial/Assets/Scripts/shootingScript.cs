@@ -6,11 +6,12 @@ public class shootingScript : MonoBehaviour
 {
     [SerializeField] int damageDealt = 20;
     [SerializeField] LayerMask layerMask;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         layerMask |= Physics.IgnoreRaycastLayer;
@@ -26,7 +27,8 @@ public class shootingScript : MonoBehaviour
             Cursor.visible = false;
             Ray mouseRay = GetComponentInChildren<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hitInfo;
-
+            anim.SetTrigger("Fire");
+            GetComponentInChildren<ParticleSystem>().Play();
             if(Physics.Raycast (mouseRay,out hitInfo,100,layerMask))
             {
                 Debug.DrawLine(transform.position, hitInfo.point, Color.red, 0.5f);

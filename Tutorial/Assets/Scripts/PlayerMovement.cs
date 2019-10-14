@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 5.0f;
     public float h;
     public float v;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         charController = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     {
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
+        anim.SetFloat("Speed", v);
+        anim.SetFloat("Direction", h);
 
         Vector3 direction = new Vector3(h, 0, v);
         Vector3 velocity = direction * moveSpeed;
@@ -33,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump"))
             {
+                anim.SetTrigger("Jump");
                 yVelocity = jumpSpeed;
             }
         }
