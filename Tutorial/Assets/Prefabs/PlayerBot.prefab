@@ -1968,6 +1968,8 @@ MonoBehaviour:
     m_Bits: 256
   bloodHit: {fileID: 6676973013373252893, guid: e76db2297ed3e2d48bdc46e2a02078c5,
     type: 3}
+  bloodHitAlt: {fileID: 261691846005433034, guid: 5560298d3a41d9b44ba4673e957d17ed,
+    type: 3}
 --- !u!114 &3065174526779381796
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameManager
+  - FxTemporaire
+  - Vampire
+  - Mutant
   layers:
   - Default
   - TransparentFX

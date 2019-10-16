@@ -7,6 +7,7 @@ public class shootingScript : MonoBehaviour
     [SerializeField] int damageDealt = 20;
     [SerializeField] LayerMask layerMask;
     [SerializeField] GameObject bloodHit;
+    [SerializeField] GameObject bloodHitAlt;
     Animator anim;
 
     // Start is called before the first frame update
@@ -34,12 +35,20 @@ public class shootingScript : MonoBehaviour
             {
                 Debug.DrawLine(transform.position, hitInfo.point, Color.red, 0.5f);
                 Health enemyHealth = hitInfo.transform.GetComponent<Health>();
-                if(enemyHealth != null)
+                if (enemyHealth != null)
                 {
                     enemyHealth.Damage(damageDealt);
                     Vector3 bloodHitPos = hitInfo.point;
                     Quaternion bloodHitRot = Quaternion.FromToRotation(Vector3.forward, hitInfo.normal);
-                    Instantiate(bloodHit, bloodHitPos, bloodHitRot);
+                    if (hitInfo.transform.tag == "Mutant")
+                    {
+                        bloodHitPos -= ((hitInfo.transform.position - gameObject.transform.position).normalized)*2;
+                        Instantiate(bloodHitAlt, bloodHitPos, bloodHitRot);
+                    }
+                    else
+                    {
+                        Instantiate(bloodHit, bloodHitPos, bloodHitRot);
+                    }
                 }
             }
         }

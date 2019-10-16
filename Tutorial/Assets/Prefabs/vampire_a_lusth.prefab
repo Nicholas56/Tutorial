@@ -1303,7 +1303,7 @@ GameObject:
   - component: {fileID: 8437607707188859110}
   m_Layer: 0
   m_Name: vampire_a_lusth
-  m_TagString: Untagged
+  m_TagString: Vampire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

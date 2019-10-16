@@ -49,6 +49,7 @@ public class Health : MonoBehaviour
                 //GameManager.amountKilled++;
                 //Destroy(gameObject);
             }
+            Destroy(GetComponent<Health>());
         }
     }
 
