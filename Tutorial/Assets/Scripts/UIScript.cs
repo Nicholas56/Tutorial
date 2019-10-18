@@ -17,6 +17,9 @@ public class UIScript : MonoBehaviour
     public GameObject losePanel;
     public ControlScript control;
 
+    AudioSource audioSrc;
+    [SerializeField] AudioClip loseClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,7 @@ public class UIScript : MonoBehaviour
         healthTxt.text = "Health:" + healthScript.getHealth();
         
         losePanel.SetActive(false);
+        audioSrc = GetComponent<AudioSource>();
 
         StartCoroutine("updateUI");
     }
@@ -49,7 +53,9 @@ public class UIScript : MonoBehaviour
         {
             losePanel.SetActive(true);
             Time.timeScale = 0;
-            
+
+            audioSrc.clip = loseClip;
+            audioSrc.Play();
             
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

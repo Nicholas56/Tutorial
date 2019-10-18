@@ -14,12 +14,18 @@ public class PlayerMovement : MonoBehaviour
     public float h;
     public float v;
     Animator anim;
+    AudioSource audioSrc;
+    [SerializeField] AudioClip leftStep;
+    [SerializeField] AudioClip rightStep;
+    bool isWalk = false;
 
     // Start is called before the first frame update
     void Start()
     {
         charController = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        audioSrc = GetComponent<AudioSource>();
+        InvokeRepeating("Footsteps", 0.0f, 0.3f);
     }
 
     // Update is called once per frame
@@ -52,5 +58,28 @@ public class PlayerMovement : MonoBehaviour
         velocity = transform.TransformDirection(velocity);
 
         charController.Move(velocity * Time.deltaTime);
+        if (v>0.1f) { isWalk=true; } else { isWalk = false; }
+    }
+
+    void Footsteps()
+    {
+        int rand = Random.Range(0, 2);
+        switch (rand)
+        {
+            case 0:
+                audioSrc.clip = leftStep;
+                break;
+            case 1:
+                audioSrc.clip = rightStep;
+                break;
+            default:
+                audioSrc.clip = null;
+                break;
+        }
+        if (isWalk && charController.isGrounded)
+        {
+            audioSrc.Play();
+        }
+
     }
 }

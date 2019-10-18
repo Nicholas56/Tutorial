@@ -8,12 +8,15 @@ public class Health : MonoBehaviour
     [SerializeField] int scoreValue = 50;
     int currentHealth = 0;
     Animator anim;
+    AudioSource audioSrc;
+    [SerializeField] AudioClip damageclip;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maximumHealth;
         anim = GetComponent<Animator>();
+        audioSrc = GetComponent<AudioSource>();
     }
 
     public bool IsDead { get { return currentHealth <= 0; } }
@@ -31,6 +34,8 @@ public class Health : MonoBehaviour
     public void Damage(int damageValue)
     {
         currentHealth -= damageValue;
+        audioSrc.clip = damageclip;
+        audioSrc.Play();
 
         if (currentHealth <= 0)
         {

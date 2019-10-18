@@ -9,11 +9,14 @@ public class shootingScript : MonoBehaviour
     [SerializeField] GameObject bloodHit;
     [SerializeField] GameObject bloodHitAlt;
     Animator anim;
+    AudioSource audioSrc;
+    [SerializeField] AudioClip shootclip;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        audioSrc = GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         layerMask |= Physics.IgnoreRaycastLayer;
@@ -30,6 +33,9 @@ public class shootingScript : MonoBehaviour
             Ray mouseRay = GetComponentInChildren<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hitInfo;
             anim.SetTrigger("Fire");
+            audioSrc.clip = shootclip;
+            audioSrc.Play();
+            audioSrc.Play();
             GetComponentInChildren<ParticleSystem>().Play();
             if(Physics.Raycast (mouseRay,out hitInfo,100,layerMask))
             {
