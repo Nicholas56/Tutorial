@@ -8,6 +8,8 @@ public class Health : MonoBehaviour
     [SerializeField] int scoreValue = 50;
     int currentHealth = 0;
     Animator anim;
+    public Renderer renderer;
+
     AudioSource audioSrc;
     [SerializeField] AudioClip damageclip;
 
@@ -16,6 +18,8 @@ public class Health : MonoBehaviour
     {
         currentHealth = maximumHealth;
         anim = GetComponent<Animator>();
+        renderer = GetComponentInChildren<Renderer>();
+
         audioSrc = GetComponent<AudioSource>();
     }
 
@@ -34,8 +38,11 @@ public class Health : MonoBehaviour
     public void Damage(int damageValue)
     {
         currentHealth -= damageValue;
-        audioSrc.clip = damageclip;
-        audioSrc.Play();
+        if (damageValue > 0)
+        {
+            audioSrc.clip = damageclip;
+            audioSrc.Play();
+        }
 
         if (currentHealth <= 0)
         {
@@ -50,17 +57,28 @@ public class Health : MonoBehaviour
                 Destroy(GetComponent<UnityEngine.AI.NavMeshAgent>());
                 Destroy(GetComponent<CharacterController>());
                 Destroy(GetComponentInChildren<EnemyAttack>());
+                Destroy(GetComponent<AIScript>());
 
+                SpawnScript.EnemyDie();
+                GameManager.amountKilled++;
                 //GameManager.amountKilled++;
-                //Destroy(gameObject);
+                //Invoke("RemoveBody", 5.0f);
             }
             Destroy(GetComponent<Health>());
         }
     }
 
+    void RemoveBody()
+    {
+        Destroy(gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if (IsDead &&!renderer.isVisible)
+        {
+            RemoveBody();
+        }
     }
 }

@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     float yVelocity = 0.0f;
 
     [SerializeField] float moveSpeed = 5.0f;
+    public int playerNum;
+
     public float h;
     public float v;
     Animator anim;
@@ -31,8 +33,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        h = Input.GetAxis("Horizontal");
+        float X = Input.GetAxis("JoystickX" );
+        //float X = Input.GetAxis("JoystickX" + playerNum);
+        Vector3 rot = transform.localEulerAngles;
+        rot.y += X * 5;
+        transform.localEulerAngles = rot;
+
+        h = Input.GetAxis("Horizontal" );
+        //h = Input.GetAxis("Horizontal" + playerNum);
         v = Input.GetAxis("Vertical");
+        //v = Input.GetAxis("Vertical" + playerNum);
         anim.SetFloat("Speed", v);
         anim.SetFloat("Direction", h);
 
@@ -76,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
                 audioSrc.clip = null;
                 break;
         }
+        
         if (isWalk && charController.isGrounded)
         {
             audioSrc.Play();

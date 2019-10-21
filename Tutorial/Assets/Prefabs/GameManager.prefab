@@ -47,3 +47,5 @@ MonoBehaviour:
   score: {fileID: 0}
   playerHealthTxt: {fileID: 0}
   timeTxt: {fileID: 0}
+  winPanel: {fileID: 0}
+  losePanel: {fileID: 0}

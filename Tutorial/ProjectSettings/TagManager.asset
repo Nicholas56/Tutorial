@@ -8,6 +8,10 @@ TagManager:
   - FxTemporaire
   - Vampire
   - Mutant
+  - Pick Up
+  - Waypoint
+  - Hide Point
+  - Spawn Player
   layers:
   - Default
   - TransparentFX

@@ -22,22 +22,11 @@ public class musicController : MonoBehaviour
         //StartCoroutine("checkEnemies");
     }
 
-    //Checks the distance between player and enemies, then when enemies are in range, increases the volume of audio proportional to distance to closest enemy
-    /*IEnumerator checkEnemies()
+    public void StopSound()
     {
-        yield return new WaitForSeconds(0.5f);
-        for(int i = 0; i < enemies.Length; i++)
-        {
-            distances[i] = Vector3.Distance(transform.position, enemies[i].transform.position);
-        }
-        if (Mathf.Min(distances) < musicDistance)
-        {
-            audioSrc.volume = 1.0f - ( Mathf.Min(distances)/ musicDistance);
-            
-        }
-        StartCoroutine("checkEnemies");
+        audioSrc.Stop();
     }
-    */
+
     // Update is called once per frame
     void Update()
     {
