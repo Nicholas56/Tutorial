@@ -8,7 +8,9 @@ public class Health : MonoBehaviour
     [SerializeField] int scoreValue = 50;
     int currentHealth = 0;
     Animator anim;
-    public Renderer renderer;
+    //public Renderer objectRenderer;
+    public int lives;
+    GameObject[] spawnPoints;
 
     AudioSource audioSrc;
     [SerializeField] AudioClip damageclip;
@@ -18,7 +20,8 @@ public class Health : MonoBehaviour
     {
         currentHealth = maximumHealth;
         anim = GetComponent<Animator>();
-        renderer = GetComponentInChildren<Renderer>();
+        //objectRenderer = GetComponentInChildren<Renderer>();
+        spawnPoints = GameObject.FindGameObjectsWithTag("Spawn Player");
 
         audioSrc = GetComponent<AudioSource>();
     }
@@ -62,9 +65,17 @@ public class Health : MonoBehaviour
                 SpawnScript.EnemyDie();
                 GameManager.amountKilled++;
                 //GameManager.amountKilled++;
-                //Invoke("RemoveBody", 5.0f);
+                Invoke("RemoveBody", 5.0f);
+                Destroy(GetComponent<Health>());
             }
-            Destroy(GetComponent<Health>());
+            else if (lives > 0)
+            {
+                RestoreHealth();
+                lives--;
+                int randNum = Random.Range(0, spawnPoints.Length);
+                transform.position = spawnPoints[randNum].transform.position;
+            }
+            
         }
     }
 
@@ -73,12 +84,17 @@ public class Health : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void RestoreHealth()
+    {
+        currentHealth = maximumHealth;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (IsDead &&!renderer.isVisible)
+        /*if (IsDead &&!objectRenderer.isVisible)
         {
             RemoveBody();
-        }
+        }*/
     }
 }

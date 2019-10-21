@@ -14,6 +14,7 @@ public class UIScript : MonoBehaviour
     public TMP_Text timeNum;
     public TMP_Text scoreMessage;
     static int score;
+    public TMP_Text livesNum;
 
     public GameObject losePanel;
     public GameObject winPanel;
@@ -55,9 +56,11 @@ public class UIScript : MonoBehaviour
 
         timeNum.text = "" + (int)Time.time;
         scoreNum.text = score + "";
+        livesNum.text = "" + healthScript.lives;
 
-        if (healthScript.IsDead&&(int)Time.time>1)
+        if (healthScript.IsDead&&(int)Time.time>1&&healthScript.lives==0)
         {
+            
             losePanel.SetActive(true);
             Time.timeScale = 0;
 
@@ -67,7 +70,6 @@ public class UIScript : MonoBehaviour
             
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-
             control.UnFreeze(false);
         }
         StartCoroutine("updateUI");

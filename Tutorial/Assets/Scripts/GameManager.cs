@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text playerHealthTxt;
     public TMP_Text timeTxt;
     public TMP_Text scoreMessage;
+    public TMP_Text livesTxt;
 
     public GameObject winPanel;
     public GameObject losePanel;
