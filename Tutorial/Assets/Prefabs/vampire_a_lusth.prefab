@@ -1302,6 +1302,7 @@ GameObject:
   - component: {fileID: 3528142669327639151}
   - component: {fileID: 8437607707188859110}
   - component: {fileID: 8386012188262749746}
+  - component: {fileID: 1376332437298094953}
   m_Layer: 0
   m_Name: vampire_a_lusth
   m_TagString: Vampire
@@ -1382,6 +1383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maximumHealth: 100
   scoreValue: 50
+  lives: 0
   damageclip: {fileID: 8300000, guid: 2b1bf6604a7c6004487630b73db2b155, type: 3}
 --- !u!114 &8283928411236884302
 MonoBehaviour:
@@ -1537,6 +1539,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1376332437298094953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6314206435023518740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88fbfdecdea4b4409fe87cb7587bca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6376100647135501479
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         if (Time.timeSinceLevelLoad > 180)
         {
+            EventManager.TriggerEvent("survived");
             won = true;
         }
         if (won==true)
@@ -41,7 +42,12 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             winPanel.SetActive(true);
             scoreMessage.text = "Your Score was: " + score;
-        }else if (amountKilled > 30)
+        }
+        if (amountKilled>15)
+        {
+            EventManager.TriggerEvent("zombiesKilled");
+        }
+        else if (amountKilled > 30)
         {
             helicopter.GetComponent<Animation>()["CopterArrive"].wrapMode = WrapMode.ClampForever;
             helicopter.GetComponent<Animation>().Play("CopterArrive");

@@ -27,17 +27,26 @@ public class musicController : MonoBehaviour
         audioSrc.Stop();
     }
 
+    void CheckForEnemies()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Vampire");
+        distances = new float[enemies.Length];
+    }
+
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < enemies.Length; i++)
+        if (enemies != null)
         {
-            distances[i] = Vector3.Distance(transform.position, enemies[i].transform.position);
-        }
-        if (Mathf.Min(distances) < musicDistance)
-        {
-            audioSrc.volume = 1.0f - (Mathf.Min(distances) / musicDistance);
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                distances[i] = Vector3.Distance(transform.position, enemies[i].transform.position);
+            }
+            if (Mathf.Min(distances) < musicDistance)
+            {
+                audioSrc.volume = 1.0f - (Mathf.Min(distances) / musicDistance);
 
+            }
         }
     }
 }
